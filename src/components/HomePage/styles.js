@@ -5,6 +5,7 @@ const styles = {
         margin: '0',
         padding: '0',
         width: '45%',
+
         '&:nth-of-type(2n)': {
             alignSelf: 'flex-end',
             '.MuiPaper-root': {
@@ -16,6 +17,21 @@ const styles = {
         '.MuiPaper-root': {
             backgroundColor: colors.blue,
             color: colors.gallery,
+        },
+
+        '&:not(last-child)': {
+            marginBottom: '2rem',
+        },
+    },
+
+    blankListItem: {
+        margin: '0',
+        padding: '0',
+        width: '45%',
+        backgroundColor: colors.gray,
+
+        '&:nth-of-type(2n)': {
+            alignSelf: 'flex-end',
         },
 
         '&:not(last-child)': {

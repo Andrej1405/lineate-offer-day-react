@@ -6,6 +6,7 @@ import theme from './styles/theme'
 import Header from './components/Header/Header'
 import Loading from './components/Loading/Loading'
 import HomePage from './components/HomePage/HomePage'
+import Context from './context/context'
 import { checkForOfflineMode, setOfflineMode } from './utils/utils'
 import ErrorMessage from './components/ErrorMessage/ErrorMessage'
 
@@ -30,21 +31,15 @@ export default function App() {
     }
 
     return (
-        <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <Header offline={offline} onChangeHandler={handleChange} />
-            {error && <ErrorMessage />}
-            <HomePage
-                books={books}
-                count={count}
-                hasMore={hasMore}
-                loading={loading}
-                query={query}
-                offline={offline}
-                handleClick={handleClick}
-                handleSearch={handleSearch}
-            />
-            {loading && <Loading />}
-        </ThemeProvider>
+        <Context.Provider
+            value={{ books, hasMore, loading, count, pageNumber, offline, handleClick, handleSearch, handleChange }}>
+            <ThemeProvider theme={theme}>
+                <CssBaseline />
+                <Header />
+                {error && <ErrorMessage />}
+                <HomePage />
+                {loading && <Loading />}
+            </ThemeProvider>
+        </Context.Provider>
     )
 }

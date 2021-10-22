@@ -1,17 +1,22 @@
-import React from 'react';
-import TextField from '@mui/material/TextField';
-import styles from './styles';
+import React, { useContext } from 'react'
+import TextField from '@mui/material/TextField'
+import Context from '../../context/context'
+import styles from './styles'
 
-const Search = ({ query, handleSearch }) => (
-  <TextField
-    sx={styles}
-    size='large'
-    id='find-a-book'
-    label='Type title of the book'
-    variant='outlined'
-    value={query}
-    onChange={handleSearch}
-  />
-);
+const Search = () => {
+    const { query, handleSearch } = useContext(Context)
 
-export default Search;
+    return (
+        <TextField
+            sx={styles}
+            size="large"
+            id="find-a-book"
+            label="Type title of the book"
+            variant="outlined"
+            value={query}
+            onChange={handleSearch}
+        />
+    )
+}
+
+export default Search

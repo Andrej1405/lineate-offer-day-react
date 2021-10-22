@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useContext } from 'react'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import List from '@mui/material/List'
@@ -7,11 +7,13 @@ import ListItem from '@mui/material/ListItem'
 import BookCard from '../BookCard/BookCard'
 import Container from '@mui/material/Container'
 import Search from '../Search/Search'
+import Context from '../../context/context'
 
-const HomePage = ({ query, count, handleSearch, books, hasMore, loading, handleClick, offline }) => {
-    const { list, listItem, container, total } = styles
+const HomePage = () => {
+    const { count, books, handleClick, offline } = useContext(Context)
     const lastBook = useRef()
     const observerBooks = useRef()
+    const { list, listItem, container, total } = styles
 
     useEffect(() => {
         if (observerBooks.current) observerBooks.current.disconnect()
@@ -25,7 +27,7 @@ const HomePage = ({ query, count, handleSearch, books, hasMore, loading, handleC
 
     return (
         <Container sx={container} maxWidth="lg">
-            {!offline && <Search query={query} handleSearch={handleSearch} />}
+            {!offline && <Search />}
             {count > 0 && (
                 <Typography variant="h5" component="h5" sx={total}>
                     Total books found: {count}
